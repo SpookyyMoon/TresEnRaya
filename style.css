@@ -93,6 +93,7 @@ p#titulo {
     border: solid #dbdbdb 0.1em;
     border-radius: 1em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

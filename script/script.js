@@ -83,6 +83,7 @@ $(document).ready( function() {
         }
     }
 
+    // Interacción Jquery
     $("button#inicio").click( function() {
         $("#tablero").remove()
         $("#contenedorDer").append(TABLERO);
