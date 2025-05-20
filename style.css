@@ -1,0 +1,129 @@
+html {
+    margin: 0em;
+    padding: 0em;
+    height: 100%;
+    width: 100%;
+    font-size: 17px;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0em;
+    padding: 0em;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #9072e1;
+}
+
+#contenedor {
+    height: 80%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border: none;
+    border-radius: 1em;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.15);
+}
+
+#contenedorIzq {
+    height: 90%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8;
+    border-radius: 1em;
+    border: solid #dbdbdb 0.1em;
+    align-items: center;
+}
+
+p#titulo {
+    font-style: oblique;
+    font-size: 2em;
+    font-weight: 600;
+    color: #58419c;
+    margin-top: 2em;
+}
+
+#jugadoresInfo {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#jugadoresInfo p {
+    font-size: 1.5em;
+    margin: 0.5em;
+}
+
+#jugadoresInfo input {
+    height: 3em;
+    width: 20em;
+    margin-top: 1em;
+    border-radius: 1em;
+    border: solid #9072e1 0.1em;
+}
+
+#jugadoresInfo button {
+    height: 3.5em;
+    margin-top: 2em;
+    border-radius: 1em;
+    border: solid #58419c 0.1em;
+    background-color: #9072e1; 
+    color: white;
+    font-size: 1em;
+    font-weight: 550;
+    cursor: pointer;
+}
+
+#jugadoresInfo button:hover {
+    transform: translateY(-0.10em);
+    box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.15);
+}
+
+#contenedorDer {
+    height: 90%;
+    width: 62%;
+    border: solid #dbdbdb 0.1em;
+    border-radius: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tablero {
+    display: grid;
+    grid-row-gap: 1em;
+    grid-template-areas: "celda11 celda12 celda13" 
+                         "celda21 celda22 celda23"
+                         "celda31 celda32 celda33";
+    justify-content: center;
+    align-items: center;
+    column-gap: 1em;
+    height: 90%;
+    width: 70%;
+}
+
+#celda11{grid-area: celda11}
+#celda21{grid-area: celda21}
+#celda31{grid-area: celda31}
+#celda12{grid-area: celda12}
+#celda22{grid-area: celda22}
+#celda32{grid-area: celda32}
+#celda13{grid-area: celda13}
+#celda23{grid-area: celda23}
+#celda33{grid-area: celda33}
+
+.celda {
+    height: 11em;
+    width: 11em;
+    background-color: #9072e115;
+    border-radius: 0.5em;
+    border: solid #9072e1 0.1em;
+}
