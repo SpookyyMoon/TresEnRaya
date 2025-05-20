@@ -100,9 +100,9 @@ p#titulo {
 #tablero {
     display: grid;
     grid-row-gap: 1em;
-    grid-template-areas: "celda11 celda12 celda13" 
-                         "celda21 celda22 celda23"
-                         "celda31 celda32 celda33";
+    grid-template-areas: "celda00 celda01 celda02" 
+                         "celda10 celda11 celda12"
+                         "celda20 celda21 celda22";
     justify-content: center;
     align-items: center;
     column-gap: 1em;
@@ -110,15 +110,15 @@ p#titulo {
     width: 70%;
 }
 
+#celda00{grid-area: celda00}
+#celda01{grid-area: celda01}
+#celda02{grid-area: celda02}
+#celda10{grid-area: celda10}
 #celda11{grid-area: celda11}
-#celda21{grid-area: celda21}
-#celda31{grid-area: celda31}
 #celda12{grid-area: celda12}
+#celda20{grid-area: celda20}
+#celda21{grid-area: celda21}
 #celda22{grid-area: celda22}
-#celda32{grid-area: celda32}
-#celda13{grid-area: celda13}
-#celda23{grid-area: celda23}
-#celda33{grid-area: celda33}
 
 .celda {
     height: 11em;
@@ -126,4 +126,7 @@ p#titulo {
     background-color: #9072e115;
     border-radius: 0.5em;
     border: solid #9072e1 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
