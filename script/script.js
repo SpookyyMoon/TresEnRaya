@@ -26,8 +26,11 @@ $(document).ready( function() {
 
     // Turnos
     const TURNO = ["O", "X"];
-    let turnoActual = 0;
+    let turnoActual = 1;
 
+    // Ganador
+    let jugadoresLista = [];
+    let ganador = null;
 
     // Funciones
     function cambiarturno() {
@@ -50,6 +53,28 @@ $(document).ready( function() {
         return false;
     }
 
+    function reiniciarJuego() {
+        // Mostrar ganador
+        const GANADOR_TEXO = `
+            <div id="mostrarGanador">
+                <p id="titulo">¡Partida terminada!</p>
+                <p>¡El jugador ${ganador} ha ganado!</p>
+                <button id="reiniciar">Volver a comenzar</button>
+            </div>`;
+
+        $("#jugadoresInfo").remove();
+        $("#contenedorIzq").append(GANADOR_TEXO);
+
+        // Reiniciar partida
+        $("button#reiniciar").on("click", function(){
+            ganador = null;
+            jugadoresLista = [];
+            turnoActual = 1;
+            $("#tablero").remove();
+            $("#contenedorDer").append(TABLERO);
+        });
+    }
+
     function comprobarGanador() {
         if ((MATRIZ[0][0] === "X" && MATRIZ[0][1] === "X" && MATRIZ[0][2] === "X") ||
         (MATRIZ[1][0] === "X" && MATRIZ[1][1] === "X" && MATRIZ[1][2] === "X") ||
@@ -59,7 +84,9 @@ $(document).ready( function() {
         (MATRIZ[0][2] === "X" && MATRIZ[1][2] === "X" && MATRIZ[2][2] === "X") ||
         (MATRIZ[0][0] === "X" && MATRIZ[1][1] === "X" && MATRIZ[2][2] === "X") ||
         (MATRIZ[0][2] === "X" && MATRIZ[1][1] === "X" && MATRIZ[2][0] === "X")) {
-            console.log("El jugador 2 ha ganado, fin de la partida!");
+            console.log(`${jugadoresLista[0]} ha ganado!`);
+            ganador = jugadoresLista[0];
+            reiniciarJuego();
             return;
         }
         else if ((MATRIZ[0][0] === "O" && MATRIZ[0][1] === "O" && MATRIZ[0][2] === "O") ||
@@ -70,7 +97,9 @@ $(document).ready( function() {
         (MATRIZ[0][2] === "O" && MATRIZ[1][2] === "O" && MATRIZ[2][2] === "O") ||
         (MATRIZ[0][0] === "O" && MATRIZ[1][1] === "O" && MATRIZ[2][2] === "O") ||
         (MATRIZ[0][2] === "O" && MATRIZ[1][1] === "O" && MATRIZ[2][0] === "O")) {
-            console.log("El jugador 1 ha ganado, fin de la partida!");
+            console.log(`${jugadoresLista[1]} ha ganado!`);
+            ganador = jugadoresLista[1];
+            reiniciarJuego();
             return;
         }
         else if ((MATRIZ[0][0] != " " && MATRIZ[0][1] != " " && MATRIZ[0][2] != " ") &&
@@ -79,14 +108,19 @@ $(document).ready( function() {
         (MATRIZ[0][0] != " " && MATRIZ[1][1] != " " && MATRIZ[2][2] != " ") &&
         (MATRIZ[0][2] != " " && MATRIZ [1][1] != " " && MATRIZ[2][0] != " ")){
             console.log("Empate!");
+            reiniciarJuego();
             return;
         }
     }
 
     // Interacción Jquery
     $("button#inicio").click( function() {
-        $("#tablero").remove()
+        $("#normas").remove();
         $("#contenedorDer").append(TABLERO);
+        let jugador1 = $("#nombreJugador1").val();
+        let jugador2 = $("#nombreJugador2").val();
+        jugadoresLista.push(jugador1, jugador2);
+        console.log(jugadoresLista);
 
         $(".celda").on("click", function() {
             let indice = $(this).attr("id");

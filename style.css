@@ -15,7 +15,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #9072e1;
+    background-color: #9072e13f;
 }
 
 #contenedor {
@@ -98,6 +98,19 @@ p#titulo {
     align-items: center;
 }
 
+#contenedorDer {
+    font-size: 1.05em;
+}
+
+#contenedorDer ul {
+    margin: 1em;
+}
+
+#contenedorDer li {
+    margin: 1em;
+}
+
+
 #tablero {
     display: grid;
     grid-row-gap: 1em;
@@ -122,12 +135,29 @@ p#titulo {
 #celda22{grid-area: celda22}
 
 .celda {
-    height: 11em;
-    width: 11em;
+    height: 10em;
+    width: 10em;
     background-color: #9072e115;
     border-radius: 0.5em;
     border: solid #9072e1 0.1em;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#reinicio button {
+    height: 3.5em;
+    margin-top: 2em;
+    border-radius: 1em;
+    border: solid #58419c 0.1em;
+    background-color: #9072e1; 
+    color: white;
+    font-size: 1em;
+    font-weight: 550;
+    cursor: pointer;
+}
+
+#reinicio button:hover {
+    transform: translateY(-0.10em);
+    box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.15);
 }

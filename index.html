@@ -16,12 +16,12 @@
                 <p d="jugador1"> 
                     Jugador 1:
                     <br>
-                    <input>
+                    <input id="nombreJugador1">
                 </p>
                 <p id="jugador2">
                     Jugador 2:
                     <br>
-                    <input>
+                    <input id="nombreJugador2">
                 </p>
 
                 <button id="inicio">
@@ -30,6 +30,25 @@
             </div>
         </div>
         <div id="contenedorDer">
+            <div id="normas">
+            <ol>
+                <b><li>Objetivo del Juego:</li></b>
+                    <p>El objetivo es formar una línea horizontal, vertical o diagonal con tres símbolos iguales ('X' o 'O') antes que el oponente.</p>
+                <b><li>Jugadores:</li></b>
+                    <ul>
+                        <li>Jugador 1: Usa el símbolo X</li>
+                        <li>Jugador 2: Usa el símbolo O</li>
+                        <li>Se alternan los turnos, empezando por X</li>
+                    </ul>  
+                <b><li>Cómo Jugar:</li></b>
+                    <ul>
+                        <li><b>Turnos alternados:</b> Cada jugador coloca su símbolo en una casilla vacía por turno.</li>
+                        <li><b>No se puede sobrescribir:</b> Una casilla ocupada no puede modificarse</li>
+                        <li><b>Gana el primer jugador que complete una línea de tres símbolos iguales.</b></li>
+                        <li><b>Empate si el tablero se llena sin que nadie forme una línea.</b></li>
+                    </ul>    
+            </ol>
+            </div>
         </div>
     </div>
     <script src="script/script.js"></script>
