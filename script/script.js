@@ -1,4 +1,4 @@
-$(document).ready( function() {
+$(document).ready(function() {
 
     // Tablero vacio
     const TABLERO = `
@@ -23,12 +23,14 @@ $(document).ready( function() {
                    [" ", " ", " "],
                    [" ", " ", " "]
                 ];
-
-    const MATRIZ_VACIA = [
+    
+    // MATRIZ tablero
+    let MATRIZ_VACIA = [
                    [" ", " ", " "],
                    [" ", " ", " "],
                    [" ", " ", " "]
-                ]; 
+                ];
+
 
     // Turnos
     const TURNO = ["O", "X"];
@@ -39,18 +41,12 @@ $(document).ready( function() {
     let ganador = null;
 
     // Interacciones Jquery
-    $("button#inicio").click( function() {
+    $("button#inicio").click(function() {
         iniciarJuego();
     });
 
     $(document).on("click", ".reiniciar", function() {
-        ganador = null;
-        jugadoresLista = [];
-        turnoActual = 1;
-        $("#tablero").remove();
-        $(".mostrarGanador").remove()
-        MATRIZ = MATRIZ_VACIA;
-        iniciarJuego();
+        reiniciarJuego();
     });
 
     // Funciones
@@ -68,32 +64,69 @@ $(document).ready( function() {
         let columna = id[6];
         if (MATRIZ[fila][columna] == " "){
             MATRIZ[fila][columna] = TURNO[turnoActual];
-            console.log(MATRIZ);
             return true;
         }
         return false;
     }
 
     function iniciarJuego() {
+        // Limpiar elementos
         $("#normas").remove();
-        $("#contenedorDer").append(TABLERO);
+        $("#contenedorDer").empty().append(TABLERO);
+        
+        // Registrar los nombres de los jugadores
         let jugador1 = $("#nombreJugador1").val();
         let jugador2 = $("#nombreJugador2").val();
-        jugadoresLista.push(jugador1, jugador2);
-        console.log(jugadoresLista);
+        jugadoresLista = [jugador1, jugador2];
+        
+        // Eventos en las celdas
+        asignarEventosCeldas();
+    }
 
-        $(".celda").off("click");
-
-        $(".celda").on("click", function() {
-            console.log(ganador);
+    function asignarEventosCeldas() {
+        $(".celda").off("click").on("click", function() {
             if(ganador == null) {
                 let indice = $(this).attr("id");
                 if(comprobarCelda(indice)) {
                     $(this).text(TURNO[turnoActual]);
                     comprobarGanador();
-                    cambiarturno();
+                    if(ganador === null) {
+                        cambiarturno();
+                    }
                 }
             }
+        });
+    }
+
+    function reiniciarJuego() {
+        ganador = null;
+        jugadoresLista = [];
+        turnoActual = 1;
+
+        MATRIZ = JSON.parse(JSON.stringify(MATRIZ_VACIA));
+        
+        $(".mostrarGanador").remove();
+        $("#contenedorDer").empty().append(TABLERO);
+        
+        $("#contenedorIzq").html(`
+            <p id="titulo">Tres en Raya</p>
+            <div id="jugadoresInfo">
+                <p id="jugador1"> 
+                    Jugador 1:
+                    <br>
+                    <input id="nombreJugador1" value="${$("#nombreJugador1").val() || ''}">
+                </p>
+                <p id="jugador2">
+                    Jugador 2:
+                    <br>
+                    <input id="nombreJugador2" value="${$("#nombreJugador2").val() || ''}">
+                </p>
+                <button id="inicio">Iniciar</button>
+            </div>
+        `);
+        
+        $("button#inicio").click(function() {
+            iniciarJuego();
         });
     }
 
@@ -111,13 +144,11 @@ $(document).ready( function() {
                 <button class="reiniciar">Volver a comenzar</button>
             </div>`;
 
-        $("#jugadoresInfo").remove();
         if (ganador != null){
             $("#contenedorIzq").append(GANADOR_TEXO);
         }
         else{
             $("#contenedorIzq").append(EMPATE_TEXTO);
-
         }
     }
 
