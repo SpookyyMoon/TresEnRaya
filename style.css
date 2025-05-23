@@ -145,8 +145,15 @@ p#titulo {
     justify-content: center;
 }
 
-#reinicio button {
-    height: 3.5em;
+.mostrarGanador {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button.reiniciar {
+    height: 2.5em;
     margin-top: 2em;
     border-radius: 1em;
     border: solid #58419c 0.1em;
@@ -157,7 +164,7 @@ p#titulo {
     cursor: pointer;
 }
 
-#reinicio button:hover {
+#reiniciar button:hover {
     transform: translateY(-0.10em);
     box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.15);
 }
