@@ -38,6 +38,21 @@ $(document).ready( function() {
     let jugadoresLista = [];
     let ganador = null;
 
+    // Interacciones Jquery
+    $("button#inicio").click( function() {
+        iniciarJuego();
+    });
+
+    $(document).on("click", ".reiniciar", function() {
+        ganador = null;
+        jugadoresLista = [];
+        turnoActual = 1;
+        $("#tablero").remove();
+        $(".mostrarGanador").remove()
+        MATRIZ = MATRIZ_VACIA;
+        iniciarJuego();
+    });
+
     // Funciones
     function cambiarturno() {
         if (turnoActual == 0) {
@@ -67,17 +82,21 @@ $(document).ready( function() {
         jugadoresLista.push(jugador1, jugador2);
         console.log(jugadoresLista);
 
+        $(".celda").off("click");
+
         $(".celda").on("click", function() {
-            let indice = $(this).attr("id");
-            if(comprobarCelda(indice)) {
-                $(this).text(TURNO[turnoActual]);
-                comprobarGanador();
-                cambiarturno();
+            console.log(ganador);
+            if(ganador == null) {
+                let indice = $(this).attr("id");
+                if(comprobarCelda(indice)) {
+                    $(this).text(TURNO[turnoActual]);
+                    comprobarGanador();
+                    cambiarturno();
+                }
             }
         });
     }
 
-    // Mostrar ganador
     function mostrarGanador() {
         const GANADOR_TEXO = `
             <div class="mostrarGanador">
@@ -101,17 +120,6 @@ $(document).ready( function() {
 
         }
     }
-
-    // Reiniciar partida
-    $(document).on("click", ".reiniciar", function() {
-        ganador = null;
-        jugadoresLista = [];
-        turnoActual = 1;
-        $("#tablero").remove();
-        $(".mostrarGanador").remove()
-        MATRIZ = MATRIZ_VACIA;
-        iniciarJuego();
-    });
 
     function comprobarGanador() {
         if ((MATRIZ[0][0] === "X" && MATRIZ[0][1] === "X" && MATRIZ[0][2] === "X") ||
@@ -151,9 +159,4 @@ $(document).ready( function() {
             return;
         }
     }
-
-    // Interacción Jquery
-    $("button#inicio").click( function() {
-        iniciarJuego();
-    });
 });
